@@ -1,15 +1,15 @@
 ---
 - name: mkdir supervisord_conf_dir
-  become: yes
-  become_user: root
+  become: '{{become_yesno}}'
+  become_user: '{{user}}'
   file:
     path: '{{supervisord_conf_dir}}'
     state: directory
     mode: 0755
 
 - name: install program definition
-  become: yes
-  become_user: root
+  become: '{{become_yesno}}'
+  become_user: '{{user}}'
   template:
     src: simple-program.conf.j2
     dest: '{{supervisord_conf_dir}}/{{supervisord_program_name}}.conf'
